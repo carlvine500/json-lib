@@ -5,13 +5,12 @@
 打好的json-lib-2.4.1.jar放入项目暂时无发现异常.
 
 修改代码描述:
-修改代码net.sf.json.JsonConfig.java
-将原来的import org.apache.commons.collections.map.MultiKeyMap;
-改为import org.apache.commons.collections4.map.MultiKeyMap;
+修改代码***net.sf.json.JsonConfig.java***
+将原来的***import org.apache.commons.collections.map.MultiKeyMap;***
+改为***import org.apache.commons.collections4.map.MultiKeyMap;***
 
-将原来的beanTypeMap.remove( beanClass, propertyType );
-改为beanTypeMap.removeAll(beanClass, propertyType);
+将原来的***beanTypeMap.remove( beanClass, propertyType );***
+改为***beanTypeMap.removeAll(beanClass, propertyType);***
 
-将原来的beanKeyMap.remove( beanClass, key );
-改为beanTypeMap.removeAll(beanClass, key);
-"
+将原来的***beanKeyMap.remove( beanClass, key );***
+改为***beanTypeMap.removeAll(beanClass, key);***
