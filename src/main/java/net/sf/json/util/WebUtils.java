@@ -16,12 +16,12 @@
 
 package net.sf.json.util;
 
-import java.util.Iterator;
-
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONNull;
 import net.sf.json.JSONObject;
+
+import java.util.Iterator;
 
 /**
  * Provides useful methods for working with JSON and web.

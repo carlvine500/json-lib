@@ -16,10 +16,10 @@
 
 package net.sf.json.util;
 
+import net.sf.json.JSONObject;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
-import net.sf.json.JSONObject;
 
 /**
  * Base class for creating Bean instances.<br>

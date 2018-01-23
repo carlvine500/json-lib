@@ -34,5 +34,5 @@ public interface JsonBeanProcessor {
     * @return a JSONObject that represents the input bean
     * @throws JSONException if an error occurs during transformation
     */
-   JSONObject processBean( Object bean, JsonConfig jsonConfig );
+   JSONObject processBean(Object bean, JsonConfig jsonConfig);
 }

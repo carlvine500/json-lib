@@ -15,8 +15,9 @@
  */
 package net.sf.json;
 
-import java.io.Writer;
+import java.io.IOException;
 import java.io.Serializable;
+import java.io.Writer;
 
 /**
  * Marker interface, identifies a valid JSON value.<br>
@@ -59,7 +60,7 @@ public interface JSON extends Serializable {
     *         brace)</small>.
     * @throws JSONException If the object contains an invalid number.
     */
-   String toString( int indentFactor );
+   String toString(int indentFactor);
 
    /**
     * Make a prettyprinted JSON text.
@@ -74,7 +75,7 @@ public interface JSON extends Serializable {
     *         and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
     * @throws JSONException If the object contains an invalid number.
     */
-   String toString( int indentFactor, int indent );
+   String toString(int indentFactor, int indent);
 
    /**
     * Write the contents as JSON text to a writer. For compactness, no
@@ -85,5 +86,10 @@ public interface JSON extends Serializable {
     * @return The writer.
     * @throws JSONException
     */
-   Writer write( Writer writer );
+   Writer write(Writer writer) throws IOException;
+
+    /**
+     * Writes the canonicalized form of this JSON object.
+     */
+    Writer writeCanonical(Writer w) throws IOException;
 }

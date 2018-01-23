@@ -16,35 +16,12 @@
 
 package net.sf.json;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import net.sf.json.processors.DefaultDefaultValueProcessor;
-import net.sf.json.processors.DefaultValueProcessor;
-import net.sf.json.processors.DefaultValueProcessorMatcher;
-import net.sf.json.processors.JsonBeanProcessor;
-import net.sf.json.processors.JsonBeanProcessorMatcher;
-import net.sf.json.processors.JsonValueProcessor;
-import net.sf.json.processors.JsonValueProcessorMatcher;
-import net.sf.json.processors.PropertyNameProcessor;
-import net.sf.json.processors.PropertyNameProcessorMatcher;
-import net.sf.json.util.CycleDetectionStrategy;
-import net.sf.json.util.JavaIdentifierTransformer;
-import net.sf.json.util.JsonEventListener;
-import net.sf.json.util.NewBeanInstanceStrategy;
-import net.sf.json.util.PropertyExclusionClassMatcher;
-import net.sf.json.util.PropertyFilter;
-import net.sf.json.util.PropertySetStrategy;
-
-import org.apache.commons.collections4.map.MultiKeyMap;
+import net.sf.json.processors.*;
+import net.sf.json.util.*;
+import org.apache.commons.collections.map.MultiKeyMap;
 import org.apache.commons.lang.StringUtils;
+
+import java.util.*;
 
 /**
  * Utility class that helps configuring the serialization process.
@@ -1364,8 +1341,7 @@ public class JsonConfig {
     */
    public void unregisterJsonValueProcessor( Class beanClass, Class propertyType ) {
       if( beanClass != null && propertyType != null ) {
-         //beanTypeMap.remove( beanClass, propertyType );
-         beanTypeMap.removeAll(beanClass, propertyType);
+         beanTypeMap.remove( beanClass, propertyType );
       }
    }
 
@@ -1378,8 +1354,7 @@ public class JsonConfig {
     */
    public void unregisterJsonValueProcessor( Class beanClass, String key ) {
       if( beanClass != null && key != null ) {
-         //beanKeyMap.remove( beanClass, key );
-         beanTypeMap.removeAll(beanClass, key);
+         beanKeyMap.remove( beanClass, key );
       }
    }
 

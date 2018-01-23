@@ -15,10 +15,10 @@
  */
 package net.sf.json.util;
 
+import net.sf.json.JSONException;
+
 import java.io.IOException;
 import java.io.Writer;
-
-import net.sf.json.JSONException;
 
 
 /**

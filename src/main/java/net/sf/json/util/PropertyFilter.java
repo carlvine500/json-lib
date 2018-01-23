@@ -26,5 +26,5 @@ public interface PropertyFilter {
     * @param value the value of the property
     * @return true if the property will be filtered out, false otherwise
     */
-   boolean apply( Object source, String name, Object value );
+   boolean apply(Object source, String name, Object value);
 }

@@ -16,13 +16,13 @@
 
 package net.sf.json.processors;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 import net.sf.json.JSON;
 import net.sf.json.JSONFunction;
 import net.sf.json.JSONNull;
 import net.sf.json.JSONString;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  * Verifies if a value is a valid JSON value.

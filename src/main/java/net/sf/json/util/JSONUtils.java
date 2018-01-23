@@ -16,29 +16,17 @@
 
 package net.sf.json.util;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import net.sf.ezmorph.MorphUtils;
 import net.sf.ezmorph.MorpherRegistry;
 import net.sf.ezmorph.bean.MorphDynaBean;
 import net.sf.ezmorph.bean.MorphDynaClass;
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
-import net.sf.json.JSONFunction;
-import net.sf.json.JSONNull;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONString;
-import net.sf.json.JsonConfig;
+import net.sf.json.*;
 import net.sf.json.regexp.RegexpUtils;
-
 import org.apache.commons.beanutils.DynaBean;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.*;
 
 /**
  * Provides useful methods on java objects and JSON values.
@@ -548,7 +536,41 @@ public final class JSONUtils {
       return sb.toString();
    }
 
-   /**
+    /**
+     * Minimal escape form.
+     */
+    public static String quoteCanonical(String s) {
+        if (s == null || s.length() == 0) {
+            return "\"\"";
+        }
+
+        int len = s.length();
+        StringBuilder sb = new StringBuilder(len + 4);
+
+        sb.append('"');
+        for (int i = 0; i < len; i += 1) {
+            char c = s.charAt(i);
+            switch (c) {
+            case '\\':
+            case '"':
+                sb.append('\\');
+                sb.append(c);
+                break;
+            default:
+                if (c < ' ') {
+                    String t = "000" + Integer.toHexString(c);
+                    sb.append("\\u")
+                            .append(t.substring(t.length() - 4));
+                } else {
+                    sb.append(c);
+                }
+            }
+        }
+        sb.append('"');
+        return sb.toString();
+    }
+
+    /**
     * Strips any single-quotes or double-quotes from both sides of the string.
     */
    public static String stripQuotes( String input ) {
@@ -653,16 +675,7 @@ public final class JSONUtils {
          return ((JSONFunction) value).toString();
       }
       if( value instanceof JSONString ){
-         Object o;
-         try{
-            o = ((JSONString) value).toJSONString();
-         }catch( Exception e ){
-            throw new JSONException( e );
-         }
-         if( o instanceof String ){
-            return (String) o;
-         }
-         throw new JSONException( "Bad value from toJSONString: " + o );
+          return ((JSONString) value).toJSONString();
       }
       if( value instanceof Number ){
          return numberToString( (Number) value );
@@ -672,6 +685,25 @@ public final class JSONUtils {
       }
       return quote( value.toString() );
    }
+
+    public static String valueToCanonicalString( Object value ) {
+       if( value == null || isNull( value ) ){
+          return "null";
+       }
+       if( value instanceof JSONFunction ){
+          return value.toString(); // there's really no canonical form for functions
+       }
+       if( value instanceof JSONString ){
+           return ((JSONString) value).toJSONString();
+       }
+       if( value instanceof Number ){
+          return numberToString( (Number) value ).toLowerCase();
+       }
+       if( value instanceof Boolean || value instanceof JSONObject || value instanceof JSONArray ){
+          return value.toString();
+       }
+       return quoteCanonical(value.toString());
+    }
 
    /**
     * Make a prettyprinted JSON text of an object value.
@@ -692,7 +724,7 @@ public final class JSONUtils {
          return "null";
       }
       if( value instanceof JSONFunction ){
-         return ((JSONFunction) value).toString();
+         return value.toString();
       }
       if( value instanceof JSONString ){
          return ((JSONString) value).toJSONString();

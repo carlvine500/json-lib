@@ -16,11 +16,11 @@
 
 package net.sf.json.processors;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Transforms a java.util.Date into a JSONObject ideal for JsDate conversion.<br>

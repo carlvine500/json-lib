@@ -41,14 +41,14 @@ public interface JsonEventListener {
     * @param index the index where the element was added
     * @param element the added element
     */
-   void onElementAdded( int index, Object element );
+   void onElementAdded(int index, Object element);
 
    /**
     * Triggered when an exception is thrown.
     *
     * @param jsone the thrown exception
     */
-   void onError( JSONException jsone );
+   void onError(JSONException jsone);
 
    /**
     * triggered when reaching the end of an object.
@@ -67,12 +67,12 @@ public interface JsonEventListener {
     * @param value the value of the property
     * @param accumulated if the value has been accumulated over 'key'
     */
-   void onPropertySet( String key, Object value, boolean accumulated );
+   void onPropertySet(String key, Object value, boolean accumulated);
 
    /**
     * Triggered when a warning is encountered.
     *
     * @param warning the warning message
     */
-   void onWarning( String warning );
+   void onWarning(String warning);
 }

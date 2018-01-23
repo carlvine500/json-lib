@@ -27,12 +27,12 @@ public interface RegexpMatcher {
     * The Pattern will be managed internally by the RegexpMatcher
     * implementation.
     */
-   String getGroupIfMatches( String str, int group );
+   String getGroupIfMatches(String str, int group);
 
    /**
     * Returns true is the string macthes the Pattern.<br>
     * The Pattern will be managed internally by the RegexpMatcher
     * implementation.
     */
-   boolean matches( String str );
+   boolean matches(String str);
 }

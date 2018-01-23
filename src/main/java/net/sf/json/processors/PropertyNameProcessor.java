@@ -30,5 +30,5 @@ public interface PropertyNameProcessor {
     * @param name the current property name
     * @return an updated property name
     */
-   String processPropertyName( Class beanClass, String name );
+   String processPropertyName(Class beanClass, String name);
 }

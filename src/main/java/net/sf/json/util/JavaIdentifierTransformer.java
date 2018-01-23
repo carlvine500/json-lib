@@ -17,7 +17,6 @@
 package net.sf.json.util;
 
 import net.sf.json.JSONException;
-
 import org.apache.commons.lang.StringUtils;
 
 /**

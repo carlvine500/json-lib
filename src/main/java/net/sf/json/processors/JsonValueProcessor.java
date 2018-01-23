@@ -32,7 +32,7 @@ public interface JsonValueProcessor {
     * @return a valid JSON value that represents the input value
     * @throws JSONException if an error occurs during transformation
     */
-   Object processArrayValue( Object value, JsonConfig jsonConfig );
+   Object processArrayValue(Object value, JsonConfig jsonConfig);
 
    /**
     * Processes the value an returns a suitable JSON value.
@@ -42,5 +42,5 @@ public interface JsonValueProcessor {
     * @return a valid JSON value that represents the input property
     * @throws JSONException if an error occurs during transformation
     */
-   Object processObjectValue( String key, Object value, JsonConfig jsonConfig );
+   Object processObjectValue(String key, Object value, JsonConfig jsonConfig);
 }

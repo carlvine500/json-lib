@@ -20,18 +20,9 @@ import groovy.lang.Closure;
 import groovy.lang.GString;
 import groovy.lang.GroovyObjectSupport;
 import groovy.lang.MissingMethodException;
+import net.sf.json.*;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
-
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
+import java.util.*;
 
 /**
  * A Groovy builder for JSON values.
@@ -111,10 +102,20 @@ public class JsonGroovyBuilder extends GroovyObjectSupport {
    private JSON current;
    private Map properties;
    private Stack stack;
+   private JsonConfig jsonConfig;
 
    public JsonGroovyBuilder() {
       stack = new Stack();
       properties = new HashMap();
+      jsonConfig = new JsonConfig();
+   }
+
+   public JsonConfig getJsonConfig() {
+      return jsonConfig;
+   }
+
+   public void setJsonConfig(JsonConfig jsonConfig) {
+      this.jsonConfig = jsonConfig;
    }
 
    public Object getProperty( String name ) {
@@ -225,9 +226,9 @@ public class JsonGroovyBuilder extends GroovyObjectSupport {
 
    private void _append( String key, Object value, JSON target ) {
       if( target instanceof JSONObject ){
-         ((JSONObject) target).accumulate( key, value );
+         ((JSONObject) target).accumulate( key, value, jsonConfig );
       }else if( target instanceof JSONArray ){
-         ((JSONArray) target).element( value );
+         ((JSONArray) target).element( value, jsonConfig );
       }
    }
 
