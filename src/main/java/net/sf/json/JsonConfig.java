@@ -18,7 +18,7 @@ package net.sf.json;
 
 import net.sf.json.processors.*;
 import net.sf.json.util.*;
-import org.apache.commons.collections.map.MultiKeyMap;
+import org.apache.commons.collections4.map.MultiKeyMap;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.*;
@@ -1341,7 +1341,7 @@ public class JsonConfig {
     */
    public void unregisterJsonValueProcessor( Class beanClass, Class propertyType ) {
       if( beanClass != null && propertyType != null ) {
-         beanTypeMap.remove( beanClass, propertyType );
+         beanTypeMap.removeAll( beanClass, propertyType );
       }
    }
 
@@ -1354,7 +1354,7 @@ public class JsonConfig {
     */
    public void unregisterJsonValueProcessor( Class beanClass, String key ) {
       if( beanClass != null && key != null ) {
-         beanKeyMap.remove( beanClass, key );
+         beanKeyMap.removeAll( beanClass, key );
       }
    }
 
